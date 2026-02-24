@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Yingqi Liu</title>
+    <style>
+        :root {
+            --bg-color: #f9fafb;
+            --container-bg: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --primary-color: #2563eb;
+            --border-color: #e5e7eb;
+            --badge-bg: #eff6ff;
+            --badge-text: #1d4ed8;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #111827;
+            --container-bg: #1f2937;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --primary-color: #60a5fa;
+            --border-color: #374151;
+            --badge-bg: #374151;
+            --badge-text: #93c5fd;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--container-bg);
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .controls {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        button:hover {
+            opacity: 0.9;
+        }
+
+        header {
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 25px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 40px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, var(--primary-color), #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            transition: transform 0.3s ease;
+            cursor: default;
+        }
+
+        h1:hover {
+            transform: scale(1.05) rotate(-1deg);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        
+        .contact-info span {
+            display: flex;
+            align-items: center;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .contact-info span:hover {
+            transform: translateY(-3px);
+            color: var(--primary-color);
+        }
+        
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h2 {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 10px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .edu-block {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+        
+        .edu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+        }
+        
+        .edu-header h3 {
+            font-size: 18px;
+            color: var(--text-main);
+        }
+        
+        .edu-meta {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .timeline {
+            border-left: 2px solid var(--border-color);
+            padding-left: 20px;
+            margin-left: 10px;
+        }
+        
+        .experience-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -27px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+        
+        .experience-header h3 {
+            font-size: 18px;
+            margin: 0;
+        }
+        
+        .role {
+            font-weight: 600;
+            color: var(--text-main);
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+        
+        .duration {
+            font-size: 14px;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+        
+        .experience-desc {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 6px;
+        }
+        
+        .tech-stack {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .skill-category {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .skill-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-main);
+            min-width: 160px;
+        }
+        
+        .skill-tag {
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        ul.list {
+            list-style-type: disc;
+            margin-left: 20px;
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+        
+        ul.list li {
+            margin-bottom: 6px;
+        }
+
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+            .controls {
+                display: none;
+            }
+            a {
+                text-decoration: none;
+                color: #000;
+            }
+            .skill-tag {
+                border: 1px solid #ccc;
+                background-color: transparent;
+                color: #000;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <button onclick="toggleTheme()">🌓</button>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>Yingqi Liu</h1>
+            <div class="contact-info">
+                <span>📍 New York, USA</span>
+                <span>📞 +1 (929) 767-5245</span>
+                <span>✉️ <a href="mailto:yliu032@citymail.cuny.edu">yliu032@citymail.cuny.edu</a></span>
+                <span>💻 <a href="https://github.com/YingqiLiu3" target="_blank">github.com/YingqiLiu3</a></span>
+            </div>
+        </header>
+
+        <div class="section">
+            <h2>Education</h2>
+            
+            <div class="edu-block">
+                <div class="edu-header">
+                    <h3>The City College of New York (The Grove School of Engineering)</h3>
+                    <span class="edu-meta">Expected May 2027</span>
+                </div>
+                <div class="role">Master of Science in Computer Science</div>
+                <p class="edu-meta" style="margin-top: 5px; color: var(--text-main)">
+                    <strong><a href="./documents/Graduate%20Transcript(Unofficial).pdf" target="_blank">Cumulative GPA:</a></strong> 3.9
+                </p>
+
+                <div style="margin-top: 10px;">
+                    <span style="font-size: 14px; font-weight: 600;">Relevant Courses:</span>
+                    <p style="font-size: 14px; color: var(--text-muted); display: inline;">
+                        Advanced Algorithms, Database Systems, Computer Vision
+                    </p>
+                </div>
+            </div>
+
+            <div class="edu-block">
+                <div class="edu-header">
+                    <h3>Dalian University of Technology</h3>
+                    <span class="edu-meta">June 2025</span>
+                </div>
+                <div class="role">(National Demonstration) School of Software Technology, 
+                    <a href="./documents/Bachelor%20Degree.jpg" target="_blank">Bachelor of Engineering in Software Engineering</a>
+                </div>
+                <p class="edu-meta" style="margin-top: 5px; color: var(--text-main)">
+                    <strong><a href="./documents/Undergraduate%20Transcript.pdf" target="_blank">Cumulative GPA:</a></strong> 3.68
+                </p>
+
+                <div style="margin-top: 10px;">
+                    <span style="font-size: 14px; font-weight: 600;">Relevant Courses:</span>
+                    <p style="font-size: 14px; color: var(--text-muted); display: inline;">
+                        Mathematics for Computer Science, Data Structure and Algorithm, Database System, Operating System, Computer Network, Software Engineering
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Honors & Rewards</h2>
+            <ul class="list">
+                <li>National Encouragement Scholarship, Ministry of National Education (Top 3%) - December 2024</li>
+                <li>Learning Excellence Scholarship, Dalian University of Technology (Top 20%) - December 2024</li>
+                <li>National Encouragement Scholarship, Ministry of National Education (Top 3%) - November 2023</li>
+                <li>Technology Innovation Award, Dalian University of Technology (Top 4%) - September 2022</li>
+                <li>Mathematical Contest In Modeling (MCM) Meritorious Winner, COMAP (Top 7%) - May 2022</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Project Experience</h2>
+            <div class="timeline">
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3><a href="https://github.com/YingqiLiu3/Neusoft-Bug-Management-System" target="_blank">Bug Management System</a> | Neusoft Corporation</h3>
+                        <span class="duration">September 2024 - December 2024</span>
+                    </div>
+                    <div class="role">Corporate-Led Practicum</div>
+                    <p class="tech-stack">Tools Used: Java, Spring/Spring Boot, SQL</p>
+                    <p class="experience-desc">Collaborated with a team under Neusoft staff guidance to develop a backend-focused bug management system.</p>
+                    <p class="experience-desc"><strong>Impact:</strong> This project was piloted within Neusoft and effectively improved the project team’s efficiency.</p>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3><a href="https://github.com/YingqiLiu3/ImageRecognition-Models-On-PYNQ-Z2" target="_blank">Design of Image Recognition Algorithm</a></h3>
+                        <span class="duration">March 2023 - April 2024</span>
+                    </div>
+                    <div class="role">Undergraduate Innovation Project</div>
+                    <p class="tech-stack">Tools Used: Python, Pytorch, VHDL, Shell</p>
+                    <p class="experience-desc">Deployed an image detection algorithm model on the PYNQ-Z2 board. It can capture a person’s face through a camera and determine whether the person is wearing a mask.</p>
+                    <p class="experience-desc"><strong>Impact:</strong> Rated as a national-level project and received a project funding of 5,000 Chinese yuan.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Summary of Qualifications</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <span class="skill-title">Programming Languages:</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">C/C++</span>
+                    <span class="skill-tag">SQL</span>
+                </div>
+                <div class="skill-category">
+                    <span class="skill-title">Frameworks & Libraries:</span>
+                    <span class="skill-tag">Spring Boot</span>
+                    <span class="skill-tag">PyTorch</span>
+                </div>
+                <div class="skill-category">
+                    <span class="skill-title">Developer Tools:</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">Linux</span>
+                    <span class="skill-tag">Shell</span>
+                </div>
+                <div class="skill-category">
+                    <span class="skill-title">Languages:</span>
+                    <span class="skill-tag">Mandarin Chinese (Native)</span>
+                    <span class="skill-tag">English (Fluent)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.documentElement;
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+            }
+        }
+    </script>
+</body>
+</html>
